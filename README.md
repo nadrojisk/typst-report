@@ -103,7 +103,9 @@ All implemented by the Lua filters in `filters/` (loaded together through `filte
   target the matching id, e.g. `# Intro {#sec:intro}` or `![Caption](img.png){#fig:cat}`.
 - **Tables**: booktabs-style rules by default. Attributes on the caption line:
   `color=true` (filled header, zebra stripes), `cell-colorize=true` (tint and mark cells matching
-  `green="Yes|OK" red="No"`; each gets a small shape so it reads in greyscale), `header-color`, `stripe-color`, `rule-color`, `landscape=true`.
+  `green="Yes|OK" red="No"`; each gets a small shape so it reads in greyscale), `header-color`, `stripe-color`, `rule-color`, `landscape=true`, and `widths=source` (keep the
+  column proportions from the markdown separator row, blended halfway toward equal widths, for
+  tables with one long-text column).
 - **Listings**: ` ```{#lst:id .python caption="Title"} ` gives a numbered, referenceable listing.
 - **Figures**: `border-color=...`, `landscape=true` on the image.
 - **Diagrams**: ` ```d2 ` blocks render with [D2](https://d2lang.com) natively, via the

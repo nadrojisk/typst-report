@@ -141,8 +141,28 @@ function Table(el)
   -- own auto-sizing measures actual rendered text width and always gives
   -- every column enough room, independent of how the source table happens
   -- to be formatted.
+  -- Opt-in `widths=source`: keep the column proportions the markdown source expresses (pandoc
+  -- derives them from the dash counts of the separator row once a row exceeds the line width),
+  -- blended halfway toward equal widths so a narrow column is never crushed. Without it, or when
+  -- pandoc computed no widths, every column is auto-sized as described above.
+  local source_widths = el.attributes["widths"] == "source"
+  el.attributes["widths"] = nil
+  local blended = nil
+  if source_widths then
+    local n = #el.colspecs
+    local all_numeric = n > 0
+    for _, spec in ipairs(el.colspecs) do
+      if type(spec[2]) ~= "number" then all_numeric = false end
+    end
+    if all_numeric then
+      blended = {}
+      for i, spec in ipairs(el.colspecs) do
+        blended[i] = 0.5 * spec[2] + 0.5 * (1 / n)
+      end
+    end
+  end
   for i, spec in ipairs(el.colspecs) do
-    el.colspecs[i] = {spec[1], pandoc.ColWidthDefault}
+    el.colspecs[i] = {spec[1], blended and blended[i] or pandoc.ColWidthDefault}
   end
 
   -- Fix alignment: pandoc emits align: (auto,auto,...) per column which
