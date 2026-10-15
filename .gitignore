@@ -1,0 +1,6 @@
+# build output
+*.pdf
+*.typ
+examples/_*
+# scratch
+mockups/

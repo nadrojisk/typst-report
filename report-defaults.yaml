@@ -1,0 +1,13 @@
+## Pandoc defaults for the report Typst template.
+## Use with: pandoc input.md --defaults=report-defaults.yaml -o output.pdf
+## (after `make install`, simply: pandoc input.md -d report -o output.pdf)
+from: markdown+alerts
+pdf-engine: typst
+template: report.typst
+filters:
+  - report.lua
+metadata:
+  tblPrefix: "Table"
+  figPrefix: "Figure"
+  secPrefix: "Section"
+  lstPrefix: "Listing"
