@@ -333,8 +333,8 @@ $endif$
   caption-color:   none,
   linkcolor:       none,
   // fonts
-  font:            ("Inter", "Liberation Sans", "DejaVu Sans"),
-  monofont:        ("JetBrains Mono", "Liberation Mono", "DejaVu Sans Mono"),
+  font:            ("Inter", "DejaVu Sans"),
+  monofont:        ("JetBrains Mono", "DejaVu Sans Mono"),
   fontsize:        10.5pt,
   // layout
   paper:           "us-letter",

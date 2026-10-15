@@ -3,6 +3,9 @@
 ## (after `make install`, simply: pandoc input.md -d report -o output.pdf)
 from: markdown+alerts
 pdf-engine: typst
+pdf-engine-opt:
+  # relative to where you run pandoc; `make install` writes a copy with this made absolute
+  - --font-path=fonts
 template: report.typst
 filters:
   - report.lua

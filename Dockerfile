@@ -30,8 +30,10 @@ FROM pandoc/minimal:3.10.0-alpine
 COPY --from=typst-download /usr/local/bin/typst /usr/local/bin/typst
 COPY --from=tiago-download /pkg /root/.cache/typst/packages
 
-# Inter (body) and JetBrains Mono (code); Liberation is the fallback stack.
-RUN apk add --no-cache font-inter font-jetbrains-mono ttf-liberation ttf-dejavu fontconfig && fc-cache -f
+# Bundled Inter (body) and JetBrains Mono (code), identical to local builds; DejaVu is the fallback.
+RUN apk add --no-cache ttf-dejavu fontconfig
+COPY fonts/*.ttf /usr/share/fonts/report/
+RUN fc-cache -f
 
 COPY report.typst           /usr/local/share/report/report.typst
 COPY report-defaults.yaml   /usr/local/share/report/report-defaults.yaml

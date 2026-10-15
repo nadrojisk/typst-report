@@ -19,12 +19,14 @@ all: $(EXAMPLES)
 examples/%.pdf: examples/%.md report.typst report-defaults.yaml $(FILTERS)
 	$(PANDOC) $(PANDOC_FLAGS) $< -o $@
 
-# Symlink into pandoc's data dir so edits here take effect immediately.
+# Symlink the template and filters into pandoc's data dir so edits here take effect immediately
+# (re-run after editing report-defaults.yaml, which is copied rather than linked).
 # Afterwards: pandoc input.md -d report -o output.pdf
 install:
 	mkdir -p $(PANDOC_DATA)/templates $(PANDOC_DATA)/filters $(PANDOC_DATA)/defaults
 	ln -sf $(CURDIR)/report.typst $(PANDOC_DATA)/templates/report.typst
-	ln -sf $(CURDIR)/report-defaults.yaml $(PANDOC_DATA)/defaults/report.yaml
+	# a generated copy, not a symlink: the font path must be absolute outside this checkout
+	sed 's#--font-path=fonts#--font-path=$(CURDIR)/fonts#' report-defaults.yaml > $(PANDOC_DATA)/defaults/report.yaml
 	for f in $(FILTERS) filters/report.lua; do ln -sf $(CURDIR)/$$f $(PANDOC_DATA)/filters/$$(basename $$f); done
 	@echo "Installed. Use: pandoc input.md -d report -o output.pdf"
 

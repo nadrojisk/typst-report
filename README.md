@@ -9,8 +9,11 @@ Themed with **Pansy**, the OKLCH purple/green token set that skins daystrom (For
 
 - Pandoc 3.x
 - Typst 0.15+ (a single static binary)
-- Fonts: [Inter](https://rsms.me/inter/) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/);
-  Liberation and DejaVu are used as fallbacks. Override with `mainfont` / `codefont`.
+- Fonts: [Inter](https://rsms.me/inter/) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/) are
+  bundled in `fonts/` (SIL OFL), so output is the same on every machine. Override with `mainfont` /
+  `codefont`. Builds from the repo root (`make`) and installed builds (`make install`, then `-d report`)
+  find them automatically; to call pandoc some other way, add
+  `--pdf-engine-opt=--font-path=/path/to/typst-report/fonts`.
 
 The Docker image bundles all of it.
 
@@ -113,6 +116,7 @@ All implemented by the Lua filters in `filters/` (loaded together through `filte
 ## Layout
 
 ```
+fonts/                    Bundled Inter and JetBrains Mono, with licenses
 report.typst              Pandoc template (front matter -> Typst; covers, page style)
 report-defaults.yaml      Pandoc defaults (template, filter, cross-ref prefixes)
 filters/                  Lua filters; report.lua runs them all in order
