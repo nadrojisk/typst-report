@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # Actions are pinned by commit SHA with the release in a trailing comment; Dependabot bumps both.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      time: "05:00"
+      timezone: America/Los_Angeles
+    open-pull-requests-limit: 3

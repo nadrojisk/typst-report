@@ -38,6 +38,15 @@ make docker
 docker run --rm -v "$PWD":/data -w /data typst-report input.md -o output.pdf
 ```
 
+A prebuilt image is published to GHCR by `.github/workflows/image.yml` on every push to `main`
+(tagged `latest`, the `VERSION` file's value, and the commit SHA) and on `v*` tags. Pull requests
+build the image and render the example through it, but never push. The image is `linux/amd64`
+only, since the Dockerfile downloads the x86_64 Typst binary.
+
+```bash
+docker run --rm -v "$PWD":/data -w /data ghcr.io/nadrojisk/typst-report:latest input.md -o output.pdf
+```
+
 ## Front matter
 
 ```yaml
