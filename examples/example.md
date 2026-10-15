@@ -88,6 +88,10 @@ def greet(name: str) -> str:
 
 ![A tuxedo cat mid-blep](cat.jpg){#fig:cat width=50%}
 
+Vector images stay sharp at any size, even tiny pixel art scaled up (@fig:pixel).
+
+![Pixel art, as SVG](pixel-art.svg){#fig:pixel width=28%}
+
 # Diagrams {#sec:diagrams}
 
 Diagrams are written in [D2](https://d2lang.com) and drawn in the report palette (@d2:flow).
