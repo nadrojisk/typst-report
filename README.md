@@ -135,3 +135,13 @@ examples/                 example.md (everything), nocover.md
 previews/                 rendered covers
 Dockerfile, Makefile
 ```
+
+## License
+
+The template, filters, build files and documentation are under the [MIT License](LICENSE).
+
+Not covered by it:
+
+- `fonts/`: Inter and JetBrains Mono, each under the SIL Open Font License (the licenses are in that folder).
+- `examples/pixel-art.svg`: pixel art of a Nintendo character, included only to demonstrate SVG support. It is
+  third-party artwork and is not licensed under this repository's license. Remove it if you reuse the examples.
